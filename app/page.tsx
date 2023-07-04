@@ -2,8 +2,8 @@ import Image from 'next/image'
 
 function Home() {
   return (
-    <div class="flex-none w-14">
-      <h2 class="font-semibold text-slate-900">Home</h2>
+    <div class="flex-none w-18">
+      <h2 class="hover:bg-blue-400 group rounded-md bg-blue-500 text-white text-sm font-medium px-2 py-2 ml-2 shadow-sm">Home</h2>
     </div>
   );
 }
@@ -11,26 +11,34 @@ function Home() {
 function Profile() {
   return (
     <div class="flex-initial w-18">
-    <a href="/profile" class="hover:bg-blue-400 group flex items-center justify-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm">
+    <a href="/profile" class="hover:bg-blue-400 group rounded-md bg-blue-500 text-white text-sm font-medium px-2 py-2 mr-2 shadow-sm">
       Profile
     </a>
     </div>
   );
 }
 
-function Statistics() {
+function Statistics({stats}) {
   return (
-    <div class="flex-initial w-32">
-      <h2 class="font-semibold text-slate-900">1234</h2>
+    <div class="flex flex-row items-center justify-between">
+      <div class="flex-initial w-32">
+        <h2 class="font-semibold text-slate-900">Radicals {stats.radicals[0]/stats.radicals[1]*100}%</h2>
+      </div>
+      <div class="flex-initial w-32">
+        <h2 class="font-semibold text-slate-900">Kanji {stats.kanji[0]/stats.kanji[1]*100}%</h2>
+      </div>
+      <div class="flex-initial w-32">
+        <h2 class="font-semibold text-slate-900">Words {stats.vocab[0]/stats.vocab[1]*100}%</h2>
+      </div>
     </div>
   );
 }
 
-function MyHeader() {
+function MyHeader({stats}) {
   return (
     <div class="flex flex-row items-center justify-between h-10">
       <Home/>
-      <Statistics/>
+      <Statistics stats={stats}/>
       <Profile/>
    </div>
   );
@@ -43,36 +51,42 @@ function MainHanja() {
   );
 }
 
-function ButtonSelection() {
+function InputBox() {
   return (
-    <div className='buttons'>
-      <span>
-        <button>
-          "Check"
-        </button>
-      </span>
-      <span>
-        <button>
-          "More Info"
-        </button>
-      </span>
+    <div class="flex flex-column justify-center">
+      <input class="bg-white shadow rounded px-2 py-2 mx-2 my-2" defaultValue={"answer"}/>
     </div>
   );
 }
 
-function InputBox() {
+function ButtonSelection() {
   return (
-    <div>
-    <input class="flex-column justify-center w-72 bg-white shadow rounded" defaultValue={"answer"}/>
+    <div class="flex flex-row justify-center">
+      <div class="flex-initial w-32">
+        <button class="hover:bg-slate-400 group rounded-md bg-slate-500 text-white text-sm font-medium px-2 py-2 shadow-sm">
+          Check
+        </button>
+      </div>
+      <div class="flex-initial w-32">
+        <button class="hover:bg-slate-400 group rounded-md bg-slate-500 text-white text-sm font-medium px-2 py-2 shadow-sm">
+          More Info
+        </button>
+      </div>
     </div>
   );
 }
 
 export default function HomePage() {
+  const stats = {
+    radicals: [20,100],
+    kanji: [500,2000],
+    vocab: [1000,8000]
+  };
+
   return (
     <section>
       <header>
-        <MyHeader />
+        <MyHeader stats={stats} />
       </header>
       <MainHanja />
       <InputBox />
