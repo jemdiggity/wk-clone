@@ -25,3 +25,32 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.toprow {
+  height: 100px;
+  width: 250px;
+  font-size: 24px;
+  text-align: center;  
+}
+
+.input_box {
+  height: 50px;
+  width: 250px;
+  font-size: 24px;
+  text-align: center;  
+}
+
+.buttons {
+  height: 100px;
+  width: 250px;
+  font-size: 24px;
+  text-align: center;  
+
+}
+
+.main_hanja {
+  height: 100px;
+  width: 250px;
+  font-size: 24px;
+  text-align: center;  
+}
